@@ -32,7 +32,7 @@ RUN apt-get update && \
         openssh-server \
         swig \
         cmake \
-        wget \
+        wget
 
 # Install the PHP mcrypt extention
 RUN docker-php-ext-install mcrypt
@@ -53,7 +53,7 @@ RUN docker-php-ext-install gd && \
         --enable-gd-native-ttf \
         --with-jpeg-dir=/usr/lib \
         --with-freetype-dir=/usr/include/freetype2 && \
-    docker-php-ext-install gd \
+    docker-php-ext-install gd
 
 #####################################
 # PDFNetPHP by PDF Tron:
@@ -74,15 +74,14 @@ RUN mkdir ~/PDFNetPHPSetup && \
     # Compiling...
     cmake -D BUILD_PDFNetPHP=ON .. && make && make install && \
     # Installing the PHP extension
-    docker-php-ext-enable PDFNetPHP \
+    docker-php-ext-enable PDFNetPHP
 
 #####################################
 # SFTP: inspired by
 # https://github.com/atmoz/sftp
 #####################################
 
-RUN mkdir -p /var/run/sshd && \
-    rm -f /etc/ssh/ssh_host_*key* \
+RUN mkdir -p /var/run/sshd && rm -f /etc/ssh/ssh_host_*key*
 COPY ./sftp/sshd_config /etc/ssh/sshd_config
 COPY ./sftp/install_sftp.sh /install_sftp.sh
 RUN ["/install_sftp.sh"]
