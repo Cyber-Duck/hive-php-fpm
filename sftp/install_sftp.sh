@@ -8,12 +8,6 @@ userConfFinalPath="/var/run/sftp-users.conf"
 function printHelp() {
     echo "Add users as command arguments, STDIN or mounted in $userConfPath"
     echo "Syntax: user:pass[:e][:uid[:gid[:dir1[,dir2]...]]] ..."
-    echo "Use --readme for more information and examples."
-}
-
-function printReadme() {
-    cat /README.md
-    echo "TIP: Read this in HTML format here: https://github.com/atmoz/sftp"
 }
 
 function createUser() {
@@ -88,11 +82,6 @@ function createUser() {
 
 if [[ $1 =~ ^--help$|^-h$ ]]; then
     printHelp
-    exit 0
-fi
-
-if [ "$1" == "--readme" ]; then
-    printReadme
     exit 0
 fi
 
