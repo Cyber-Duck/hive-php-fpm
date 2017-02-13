@@ -84,6 +84,7 @@ RUN mkdir ~/PDFNetPHPSetup && \
 RUN mkdir -p /var/run/sshd && rm -f /etc/ssh/ssh_host_*key*
 COPY ./sftp/sshd_config /etc/ssh/sshd_config
 COPY ./sftp/install_sftp.sh /install_sftp.sh
+RUN chmod +x /install_sftp.sh
 RUN ["/install_sftp.sh"]
 
 EXPOSE 22
