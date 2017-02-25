@@ -32,7 +32,8 @@ RUN apt-get update && \
         openssh-server \
         swig \
         cmake \
-        wget
+        wget \
+        git
 
 # Install the PHP mcrypt extention
 RUN docker-php-ext-install mcrypt
@@ -75,3 +76,17 @@ RUN mkdir ~/PDFNetPHPSetup && \
     cmake -D BUILD_PDFNetPHP=ON .. && make && make install && \
     # Installing the PHP extension
     docker-php-ext-enable PDFNetPHP
+
+#####################################
+# Final Touch:
+#####################################
+
+RUN rm -r /var/lib/apt/lists/*
+    
+RUN usermod -u 1000 www-data
+
+WORKDIR /var/www
+
+EXPOSE 9000
+
+CMD ["php-fpm"]
