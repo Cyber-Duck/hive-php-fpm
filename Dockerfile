@@ -34,7 +34,8 @@ RUN apt-get update && \
         cmake \
         wget \
         git \
-        cron
+        cron \
+        nano
 
 # Install the PHP mcrypt extention
 RUN docker-php-ext-install mcrypt
